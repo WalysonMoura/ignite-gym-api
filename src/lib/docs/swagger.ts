@@ -1,4 +1,4 @@
-export const swaggerDocument = JSON.parse(`
+export const swagger = JSON.parse(`
 
 {
   "openapi": "3.0.0",
