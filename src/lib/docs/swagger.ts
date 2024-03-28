@@ -1,3 +1,5 @@
+export const swaggerDocument = JSON.parse(`
+
 {
   "openapi": "3.0.0",
   "info": {
@@ -454,7 +456,7 @@
         }
       }
     },
-    "/files/${filename.png}": {
+    "/files/${__filename}.png": {
       "get": {
         "tags": ["Image"],
         "summary": "Show",
@@ -478,3 +480,5 @@
     }
   }
 }
+
+`)
