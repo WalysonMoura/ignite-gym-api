@@ -5,6 +5,7 @@ import fastifySwagger from "@fastify/swagger"
 
 import { env } from "./env";
 import { swagger} from "./lib/docs/swagger";
+import { userRoutes } from "./http/controller/user/routes";
 
 export const app = fastify();
 
@@ -13,6 +14,7 @@ app.get("/", async (req, reply) => {
 });
 
 app.register(fastifySwagger, {})
+
 app.register(require('@fastify/swagger-ui'), {
   exposeRoute: true,
   routePrefix: '/api-docs', 
@@ -37,3 +39,6 @@ app.register(fastifyJwt, {
     signed: false,
   },
 });
+
+
+app.register(userRoutes)

@@ -8,7 +8,8 @@
   "license": "ISC",
   "scripts": {
     "dev":"tsx watch src/server.ts",
-    "test": "vitest run --dir src/use-cases"
+    "test": "vitest run --dir src/use-cases",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@fastify/cookie": "^9.3.1",
