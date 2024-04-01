@@ -10,8 +10,7 @@
     "dev": "tsx watch src/server.ts",
     "test": "vitest run --dir src/use-cases",
     "migrate": "prisma migrate dev &&  prisma generate",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build",
-    "postinstall": "prisma generate"
+      "postinstall": "prisma generate"
   },
   "dependencies": {
     "@fastify/cookie": "^9.3.1",
