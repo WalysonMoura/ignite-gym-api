@@ -1,11 +1,13 @@
 import fastifyJwt from "@fastify/jwt";
 import fastify from "fastify";
-import fastifySwagger from "@fastify/swagger"
-
+import express from "express";
+import swaggerUI from "swagger-ui-express";
 
 import { env } from "./env";
-import { swagger} from "./lib/docs/swagger";
+import swaggerDocument from "./lib/docs/swagger.json";
 import { userRoutes } from "./http/controller/user/routes";
+
+const swaggerExpress = express();
 
 export const app = fastify();
 
@@ -13,21 +15,11 @@ app.get("/", async (req, reply) => {
   return reply.status(200).type("text/html").send("Hello World");
 });
 
-app.register(fastifySwagger, {})
-
-app.register(require('@fastify/swagger-ui'), {
-  exposeRoute: true,
-  routePrefix: '/api-docs', 
-  swagger:
-    swagger
-  ,
-});
-
-
-app.ready(err => {
-  if (err) throw err
-  app.swagger()
-})
+swaggerExpress.use(
+  "/api-docs",
+  swaggerUI.serve,
+  swaggerUI.setup(swaggerDocument)
+);
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
@@ -40,5 +32,4 @@ app.register(fastifyJwt, {
   },
 });
 
-
-app.register(userRoutes)
+app.register(userRoutes);

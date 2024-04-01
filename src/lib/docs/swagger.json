@@ -1,5 +1,3 @@
-export const swagger = JSON.parse(`
-
 {
   "openapi": "3.0.0",
   "info": {
@@ -481,4 +479,3 @@ export const swagger = JSON.parse(`
   }
 }
 
-`)
