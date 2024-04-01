@@ -21,6 +21,8 @@ export class PrismaUsersRepository implements UsersRepository {
         email,
       },
     });
+
+    return user;
   }
 
   async findById({ userId }: FindByIdParams) {
