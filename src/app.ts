@@ -11,12 +11,12 @@ const swaggerExpress = express();
 
 export const app = fastify();
 
-app.get("/", async (req, reply) => {
+/* app.get("/", async (req, reply) => {
   return reply.status(200).type("text/html").send("Hello World");
-});
+}); */
 
 swaggerExpress.use(
-  "/api-docs",
+  "/",
   swaggerUI.serve,
   swaggerUI.setup(swaggerDocument)
 );
