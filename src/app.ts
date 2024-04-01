@@ -15,11 +15,7 @@ export const app = fastify();
   return reply.status(200).type("text/html").send("Hello World");
 }); */
 
-swaggerExpress.use(
-  "/",
-  swaggerUI.serve,
-  swaggerUI.setup(swaggerDocument)
-);
+swaggerExpress.use("/", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
