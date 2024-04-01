@@ -9,7 +9,7 @@ import { userRoutes } from "./http/controller/user/routes";
 
 const swaggerExpress = express();
 
-export const app = fastify();
+export const app = fastify({ logger: true });
 
 /* app.get("/", async (req, reply) => {
   return reply.status(200).type("text/html").send("Hello World");
@@ -28,4 +28,16 @@ app.register(fastifyJwt, {
   },
 });
 
+
+
+
+
 app.register(userRoutes);
+
+const listeners = ["SIGINT", "SIGTERM"];
+listeners.forEach((signal) => {
+  process.on(signal, async () => {
+    await app.close();
+    process.exit(0);
+  });
+});
