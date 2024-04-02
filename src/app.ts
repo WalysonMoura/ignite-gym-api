@@ -32,7 +32,7 @@ app.register(fastifyJwt, {
 
 
 
-app.register(userRoutes);
+//app.register(userRoutes);
 
 const listeners = ["SIGINT", "SIGTERM"];
 listeners.forEach((signal) => {
