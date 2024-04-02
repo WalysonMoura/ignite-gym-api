@@ -11,5 +11,5 @@ export interface FindManyByGroupParams {
 export interface ExerciseRepository {
   findManyByGroup: ({ group }: FindManyByGroupParams) => Promise<Exercise[]>;
   findById: ({ id }: FindByIdParams) => Promise<Exercise | null>;
-  findAllGroups: () => Promise<string[]>;
+  findAllGroupsName: () => Promise<string[]>;
 }
