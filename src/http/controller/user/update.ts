@@ -2,7 +2,7 @@ import { FastifyReply, FastifyRequest } from "fastify";
 import { z, ZodError } from "zod";
 
 export async function update(request: FastifyRequest, reply: FastifyReply) {
-  const updateBodySchema = z.object({
+  /* const updateBodySchema = z.object({
     name: z.string(),
     email: z.string().email(),
     paswword: z.string().min(6),
@@ -33,4 +33,4 @@ export async function update(request: FastifyRequest, reply: FastifyReply) {
       return reply.status(400).send({ error: error || "Erro interno." });
     }
   }
-}
+ */}
