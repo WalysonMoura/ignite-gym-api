@@ -1382,6 +1382,7 @@ export namespace Prisma {
       History: Prisma.$HistoryPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
+      [x: string]: any;
       id: string
       name: string
       email: string

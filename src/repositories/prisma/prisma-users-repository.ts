@@ -1,7 +1,11 @@
 import { Prisma } from "prisma/generated/client";
 import {
+  CreateRefreshTokenParams,
+  DeleteRefreshTokenParams,
   FindByEmailParams,
   FindByIdParams,
+  FindByTokenParams,
+  UpdateUserPhotoParams,
   UsersRepository,
 } from "../users-repository";
 import prisma from "@/lib/prisma";
@@ -44,5 +48,62 @@ export class PrismaUsersRepository implements UsersRepository {
     });
 
     return user;
+  }
+
+  async updateUserPhoto({ userId, filename }: UpdateUserPhotoParams) {
+    await prisma.user.update({
+      where: {
+        id: userId,
+      },
+      data: {
+        avatar: filename,
+      },
+    });
+  }
+  async createRefreshToken({
+    expiresIn,
+    refreshToken,
+    userId,
+  }: CreateRefreshTokenParams) {
+    const RefreshToken = await prisma.refreshToken.create({
+      data: {
+        user_id: userId,
+        refresh_token: refreshToken,
+        expires_in: Number(new Date(expiresIn * 1000)),
+      },
+    });
+
+    return RefreshToken;
+  }
+
+  async findByRefreshToken({ refreshToken }: FindByTokenParams) {
+    const RefreshToken = await prisma.refreshToken.findFirst({
+      where: {
+        refresh_token: refreshToken,
+      },
+      select: {
+        user_id: true,
+        expires_in: true,
+      },
+    });
+
+    if (RefreshToken) {
+      const { user_id, expires_in } = RefreshToken;
+      if (expires_in !== null && user_id) {
+        return {
+          userId: user_id,
+          expiresIn: expires_in,
+        };
+      }
+    }
+    return null;
+  }
+
+  async deleteRefreshToken({ userId }: DeleteRefreshTokenParams) {
+    await prisma.refreshToken.deleteMany({
+      where: {
+        id: userId,
+      },
+    });
   }
 }
