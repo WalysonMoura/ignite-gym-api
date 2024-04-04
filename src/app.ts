@@ -23,12 +23,14 @@ app.register(require("@fastify/swagger-ui"), {
   routePrefix: "/docs",
   exposeRoute: true,
   swagger: {
+    openapi: "3.0.0",
     info: {
-      title: "Fastify API",
+      title: "Ignite Gym API",
       description:
-        "Building a blazing fast REST API with Node.js, MongoDB, Fastify and Swagger",
+        "API developed by Rodrigo Gonçalves to be used in Ignite training in the mobile backend integration.",
       version: "1.0.0",
     },
+
     paths: {
       "/users": {
         post: {
@@ -508,6 +510,29 @@ app.register(require("@fastify/swagger-ui"), {
     schemes: ["http"],
     consumes: ["application/json"],
     produces: ["application/json"],
+
+    definitions: {
+      User: {
+        type: "object",
+        required: ["id", "email"],
+        properties: {
+          id: {
+            type: "number",
+            format: "uuid",
+          },
+          firstName: {
+            type: "string",
+          },
+          lastName: {
+            type: "string",
+          },
+          email: {
+            type: "string",
+            format: "email",
+          },
+        },
+      },
+    },
   },
 });
 
