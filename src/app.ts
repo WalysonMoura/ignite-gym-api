@@ -12,17 +12,17 @@ const swagger = require("./lib/docs/swagger");
 
 export const app = fastify({ logger: true });
 
-app.get("/", async (req, reply) => {
+/* app.get("/", async (req, reply) => {
   return reply.status(200).type("text/html").send("Hello World");
 });
-
+ */
 ///app.register(fastifySwagger, {})
 
 app.register(fastifySwagger, swagger.options);
 app.register(require("@fastify/swagger-ui"), {
-  routePrefix: "/docs",
+  routePrefix: "/",
   exposeRoute: true,
-  swagger: {
+  /* swagger: {
     openapi: "3.0.0",
     info: {
       title: "Ignite Gym API",
@@ -63,7 +63,7 @@ app.register(require("@fastify/swagger-ui"), {
         },
       },
     },
-  },
+  }, */
 });
 
 app.register(fastifyJwt, {
