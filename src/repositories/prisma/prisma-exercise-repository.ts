@@ -3,6 +3,8 @@ import {
   ExerciseRepository,
   FindByIdParams,
   FindManyByGroupParams,
+  FindManyByUserIdParams,
+  SaveExerciseParams,
 } from "../exercise-repository";
 
 export class PrismaExerciseRepository implements ExerciseRepository {
@@ -38,4 +40,26 @@ export class PrismaExerciseRepository implements ExerciseRepository {
 
     return groups.map((item) => item.group);
   }
+
+  async findManyByUserId({ userId }: FindManyByUserIdParams) {
+    const exercises = prisma.history.findMany({
+      where: {
+        user_id: userId,
+      },
+      include: {
+        exercise: {
+          select: {
+            name: true,
+            group: true,
+          },
+        },
+      },
+      orderBy: {
+        created_at: "desc",
+      },
+    });
+
+    retuyy
+  }
+  async saveExercise({ exerciseId, userId }: SaveExerciseParams) {}
 }
