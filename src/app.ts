@@ -5,6 +5,7 @@ import fastifySwagger from "@fastify/swagger";
 
 import { env } from "./env";
 import path from "path";
+import { exerciseRoutes } from "./http/controller/exercise/routes";
 
 const swagger = require("./lib/docs/swagger");
 
@@ -22,49 +23,9 @@ app.register(fastifySwagger, swagger.options);
 app.register(require("@fastify/swagger-ui"), {
   routePrefix: "/",
   exposeRoute: true,
-  /* swagger: {
-    openapi: "3.0.0",
-    info: {
-      title: "Ignite Gym API",
-      description:
-        "API developed by Rodrigo Gonçalves to be used in Ignite training in the mobile backend integration.",
-      version: "1.0.0",
-    },
-
-
-    externalDocs: {
-      url: "https://swagger.io",
-      description: "Find more info here",
-    },
-    host: "localhost",
-    schemes: ["http"],
-    consumes: ["application/json"],
-    produces: ["application/json"],
-
-    definitions: {
-      User: {
-        type: "object",
-        required: ["id", "email"],
-        properties: {
-          id: {
-            type: "number",
-            format: "uuid",
-          },
-          firstName: {
-            type: "string",
-          },
-          lastName: {
-            type: "string",
-          },
-          email: {
-            type: "string",
-            format: "email",
-          },
-        },
-      },
-    },
-  }, */
 });
+
+app.register(exerciseRoutes);
 
 app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
