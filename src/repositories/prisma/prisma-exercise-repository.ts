@@ -59,7 +59,14 @@ export class PrismaExerciseRepository implements ExerciseRepository {
       },
     });
 
-    retuyy
+    return exercises;
   }
-  async saveExercise({ exerciseId, userId }: SaveExerciseParams) {}
+  async saveExercise({ exerciseId, userId }: SaveExerciseParams) {
+    await prisma.history.create({
+      data: {
+        user_id: userId,
+        exercise_id: exerciseId,
+      },
+    });
+  }
 }
