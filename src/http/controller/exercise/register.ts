@@ -4,7 +4,7 @@ import { z } from "zod";
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const userId = request.user.id;
+    const userId = request.user.sub;
 
     const registerCreateSchema = z.object({
       exercise_id: z.string(),

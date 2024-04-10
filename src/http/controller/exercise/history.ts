@@ -4,7 +4,7 @@ import { FastifyRequest, FastifyReply } from "fastify";
 
 export async function history(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const userId = request.user.id;
+    const userId = request.user.sub;
 
     const fetchUserExercisesHistoryUseCase =
       makeFetchUserExercisesHistoryUseCase();
