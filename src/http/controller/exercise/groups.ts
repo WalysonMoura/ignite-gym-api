@@ -1,4 +1,4 @@
-import { makeFetchGroupsNameUseCase } from "@/use-cases/factory/make-fetch-groups-name";
+import { makeFetchGroupsNameUseCase } from "../../../use-cases/factory/make-fetch-groups-name";
 import { FastifyRequest, FastifyReply } from "fastify";
 
 export async function groups(request: FastifyRequest, reply: FastifyReply) {
