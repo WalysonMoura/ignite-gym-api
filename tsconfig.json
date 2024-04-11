@@ -118,7 +118,10 @@
     "isolatedModules": true,
    
     "incremental": true,
-    
+     "baseUrl": "./",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
    
   },
   "include": ["**/*.d.ts", "**/*.ts",],

@@ -1,6 +1,7 @@
-import { makeFetchUserExercisesHistoryUseCase } from "@/use-cases/factory/make-fetch-user-exercises-history";
+
 import dayjs from "dayjs";
 import { FastifyRequest, FastifyReply } from "fastify";
+import { makeFetchUserExercisesHistoryUseCase } from "../../../use-cases/factory/make-fetch-user-exercises-history";
 
 export async function history(request: FastifyRequest, reply: FastifyReply) {
   try {

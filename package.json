@@ -1,5 +1,4 @@
 {
-
   "name": "ignite-gym-api",
   "version": "1.0.0",
   "description": "",
@@ -12,12 +11,12 @@
     "test": "vitest run --dir src/use-cases",
     "migrate": "prisma migrate dev &&  prisma generate",
     "postinstall": "prisma generate"
-    
   },
   "dependencies": {
     "@fastify/cookie": "^9.3.1",
     "@fastify/cors": "9.0.1",
     "@fastify/jwt": "^8.0.0",
+    "@fastify/static": "7.0.3",
     "@fastify/swagger": "8.14.0",
     "@fastify/swagger-ui": "3.0.0",
     "@prisma/client": "^5.11.0",
@@ -38,6 +37,7 @@
     "@ianvs/prettier-plugin-sort-imports": "^4.2.1",
     "@rocketseat/eslint-config": "^2.2.2",
     "@types/bcryptjs": "^2.4.6",
+    "@types/fastify-static": "2.2.1",
     "@types/jsonwebtoken": "9.0.6",
     "@types/node": "^20.11.30",
     "@types/supertest": "^6.0.2",
