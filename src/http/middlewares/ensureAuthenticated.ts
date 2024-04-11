@@ -1,8 +1,8 @@
-import { verify } from "jsonwebtoken";
+/* import { verify } from "jsonwebtoken";
 
 import authConfig from "../configs/auth";
 
-export async function ensureAuthenticated(request, response, next:) {
+export async function ensureAuthenticated(request, response, next) {
   const authHeader = request.headers.authorization;
 
   if (!authHeader) {
@@ -25,3 +25,4 @@ export async function ensureAuthenticated(request, response, next:) {
 }
 
 module.exports = ensureAuthenticated;
+ */
