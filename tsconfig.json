@@ -108,16 +108,15 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */,
 
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+     "allowJs": true,
   
     "noEmit": true,
    
-    "module": "esnext",
+    "module": "ES2022",
     "moduleResolution": "bundler",
    
     "isolatedModules": true,
-    "jsx": "preserve",
+   
     "incremental": true,
     "plugins": [
       {
