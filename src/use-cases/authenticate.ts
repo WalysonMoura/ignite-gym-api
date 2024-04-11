@@ -1,9 +1,7 @@
-import { UsersRepository } from "@/repositories/users-repository";
 import { User } from "@prisma/client";
-import { compare, hash } from "bcryptjs";
-import { UserAlreadyExists } from "./errors/user-already-exists";
-import { env } from "@/env";
-import { sign } from "jsonwebtoken";
+import { compare } from "bcryptjs";
+
+import { UsersRepository } from "../repositories/users-repository";
 
 interface AuthenticateUseCaseRequest {
   email: string;
@@ -35,32 +33,8 @@ export class AuthenticateUseCase {
       throw new Error("E-mail e/ou senha incorreta.");
     }
 
-    delete user.password_hash;
-
     return {
       user,
     };
-  }
-}
-
-// jwtTokenProvider.ts
-class JwtTokenProvider implements TokenProvider {
-  generateToken(userId: number): Promise<string> {
-    const { ACCESS_TOKEN_EXPIRATION, JWT_SECRET } = env;
-    
-    return new Promise((resolve, reject) => {
-      sign(
-        {},
-        JWT_SECRET,
-        {
-          subject: String(userId),
-          ACCESS_TOKEN_EXPIRATION,
-        },
-        (err, token) => {
-          if (err) reject(err);
-          resolve(token);
-        }
-      );
-    });
   }
 }

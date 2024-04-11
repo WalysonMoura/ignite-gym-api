@@ -1,8 +1,11 @@
-import { env } from "@/env";
 import { randomUUID } from "crypto";
+
 import { FastifyRequest, FastifyReply } from "fastify";
 import { sign, SignOptions } from "jsonwebtoken";
 import { z } from "zod";
+import { env } from "../../../env";
+import { makeAuthenticateUseCase } from "../../../use-cases/factory/make-authenticate-use-case";
+import { makeGenerateRefreshTokenUseCase } from "../../../use-cases/factory/make-generate-refresh-token";
 
 export async function authenticate(
   request: FastifyRequest,
@@ -12,36 +15,39 @@ export async function authenticate(
     email: z.string().email(),
     password: z.string().min(6),
   });
+
   const { email, password } = authenticateSchemaBody.parse(request.body);
 
   try {
-  } catch (error) {}
+    const authenticateUseCase = makeAuthenticateUseCase();
+    const { user } = await authenticateUseCase.execute({ email, password });
+
+    const generateRefreshTokenUseCase = makeGenerateRefreshTokenUseCase();
+    const { refreshToken } = await generateRefreshTokenUseCase.execute({
+      userId: user.id,
+    });
+
+    const { token } = generateToken(user.id);
+
+    reply.status(201).send({
+      token,
+      refresh_token: refreshToken,
+    });
+  } catch (error) {
+    if (error instanceof Error) {
+      reply.status(400).send({ message: error.message });
+    }
+    throw error;
+  }
 }
 
-function generateToken(userId: number): string {
+function generateToken(userId: string) {
   const { ACCESS_TOKEN_EXPIRATION, JWT_SECRET } = env;
   const options: SignOptions = {
     subject: String(userId),
     expiresIn: ACCESS_TOKEN_EXPIRATION, // Especifica o tempo de expiração do token JWT
   };
-  return sign({}, JWT_SECRET, options);
+  const token = sign({}, JWT_SECRET, options);
+
+  return { token };
 }
-/* 
-async function generateRefreshToken(
-  refreshTokenRepository: RefreshTokenRepository,
-  userId: number
-): Promise<string> {
-  await refreshTokenRepository.deleteRefreshToken(userId);
-
-  const expires_in = dayjs().add(15, "m").unix();
-  const refresh_token = randomUUID();
-
-  await refreshTokenRepository.createRefreshToken(
-    userId,
-    refresh_token,
-    expires_in
-  );
-
-  return refresh_token;
-}
- */

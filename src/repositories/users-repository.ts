@@ -1,5 +1,5 @@
-import { RefreshToken } from "@prisma/client";
-import { Prisma, User } from "prisma/generated/client";
+import { Prisma, RefreshToken, User } from "@prisma/client";
+
 
 export interface FindByIdParams {
   userId: string;

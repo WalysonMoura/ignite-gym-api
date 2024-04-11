@@ -1,7 +1,7 @@
-import { UsersRepository } from "@/repositories/users-repository";
 import { User } from "@prisma/client";
 import { hash } from "bcryptjs";
 import { UserAlreadyExists } from "./errors/user-already-exists";
+import { UsersRepository } from "../repositories/users-repository";
 
 interface CreateUseUseCaseRequest {
   name: string;
@@ -34,8 +34,7 @@ export class CreateUseUseCase {
       name,
       password_hash,
     });
- 
-    
+
     return {
       user,
     };

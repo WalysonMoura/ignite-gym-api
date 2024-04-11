@@ -1,4 +1,5 @@
-import { Prisma } from "prisma/generated/client";
+import { Prisma } from "@prisma/client";
+import prisma from "../../lib/prisma";
 import {
   CreateRefreshTokenParams,
   DeleteRefreshTokenParams,
@@ -8,7 +9,6 @@ import {
   UpdateUserPhotoParams,
   UsersRepository,
 } from "../users-repository";
-import prisma from "@/lib/prisma";
 
 export class PrismaUsersRepository implements UsersRepository {
   async create(data: Prisma.UserCreateInput) {
@@ -69,7 +69,7 @@ export class PrismaUsersRepository implements UsersRepository {
       data: {
         user_id: userId,
         refresh_token: refreshToken,
-        expires_in: Number(new Date(expiresIn * 1000)),
+        expires_in: expiresIn,
       },
     });
 
