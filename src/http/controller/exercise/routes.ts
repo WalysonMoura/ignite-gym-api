@@ -43,9 +43,7 @@ export async function exerciseRoutes(app: FastifyInstance) {
 
   app.get("/exercises/bygroup/:group", exercises);
   app.get("/exercises/:id", details);
-  app.post("/gyms/:gymId/check-ins", details);
-
-  app.get("/groups", groups);
+ app.get("/groups", groups);
 
   app.get("/history", history);
   app.post("/history", register);
