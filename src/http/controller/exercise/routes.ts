@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 
-import fastifyStatic from "fastify-static";
+//import fastifyStatic from "fastify-static";
 
 import path from "path";
 import { groups } from "./groups";

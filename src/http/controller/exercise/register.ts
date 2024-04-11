@@ -1,6 +1,7 @@
-import { makeRegisterExerciseUseCase } from "@/use-cases/factory/make-register-exercise";
+
 import { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
+import { makeRegisterExerciseUseCase } from "../../../use-cases/factory/make-register-exercise";
 
 export async function register(request: FastifyRequest, reply: FastifyReply) {
   try {

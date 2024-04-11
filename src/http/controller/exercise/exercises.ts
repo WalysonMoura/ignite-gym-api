@@ -1,6 +1,7 @@
-import { makeFetchExercisesByGroupUseCase } from "@/use-cases/factory/make-fetch-exercises-by-group";
+
 import { FastifyRequest, FastifyReply } from "fastify";
 import { z } from "zod";
+import { makeFetchExercisesByGroupUseCase } from "../../../use-cases/factory/make-fetch-exercises-by-group";
 
 export async function exercises(request: FastifyRequest, reply: FastifyReply) {
   try {
