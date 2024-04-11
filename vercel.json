@@ -1,4 +1,6 @@
 {
+  "outputDirectory": "build",
+  "buildCommand": "pnpm build",
   "builds": [
     {
       "src": "build/server.js",
