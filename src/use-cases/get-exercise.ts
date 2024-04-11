@@ -1,6 +1,7 @@
-import { ExerciseRepository } from "@/repositories/exercise-repository";
+
 import { Exercise } from "@prisma/client";
 import { ExerciseNotFound } from "./errors/exercise-not-found";
+import { ExerciseRepository } from "../repositories/exercise-repository";
 
 interface GetExerciseUseCaseRequest {
   id: string;

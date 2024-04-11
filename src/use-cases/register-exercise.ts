@@ -1,4 +1,4 @@
-import { ExerciseRepository } from "@/repositories/exercise-repository";
+import { ExerciseRepository } from "../repositories/exercise-repository";
 
 interface RegisterExerciseUseCaseRequest {
   userId: string;

@@ -1,8 +1,9 @@
-import { UsersRepository } from "@/repositories/users-repository";
+
 import { User } from "@prisma/client";
 import { UserNotFound } from "./errors/user-not-found";
 import { compare, hash } from "bcryptjs";
 import { OldPasswordNotConference } from "./errors/old-password-not-conference";
+import { UsersRepository } from "../repositories/users-repository";
 
 interface UpdateUserUseCaseRequest {
   userId: string;

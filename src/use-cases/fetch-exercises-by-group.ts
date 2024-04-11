@@ -1,5 +1,6 @@
-import { ExerciseRepository } from "@/repositories/exercise-repository";
+
 import { Exercise } from "@prisma/client";
+import { ExerciseRepository } from "../repositories/exercise-repository";
 
 interface FetchExercisesByGroupUseCaseRequest {
   group: string;

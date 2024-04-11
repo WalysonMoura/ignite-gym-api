@@ -1,4 +1,4 @@
-import { ExerciseRepository } from "@/repositories/exercise-repository";
+import { ExerciseRepository } from "../repositories/exercise-repository";
 
 interface FetchGroupUsesNameCaseResponse {
   groups: string[];

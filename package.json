@@ -11,8 +11,8 @@
     "dev": "tsx watch src/server.ts",
     "test": "vitest run --dir src/use-cases",
     "migrate": "prisma migrate dev &&  prisma generate",
-    "postinstall": "prisma generate",
-    "build": "tsup src --out-dir build"
+    "postinstall": "prisma generate"
+    
   },
   "dependencies": {
     "@fastify/cookie": "^9.3.1",

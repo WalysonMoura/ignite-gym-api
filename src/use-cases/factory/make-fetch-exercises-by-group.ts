@@ -1,4 +1,5 @@
-import { PrismaExerciseRepository } from "@/repositories/prisma/prisma-exercise-repository";
+
+import { PrismaExerciseRepository } from "../../repositories/prisma/prisma-exercise-repository";
 import { FetchExercisesByGroupUseCase } from "../fetch-exercises-by-group";
 
 export function makeFetchExercisesByGroupUseCase() {
